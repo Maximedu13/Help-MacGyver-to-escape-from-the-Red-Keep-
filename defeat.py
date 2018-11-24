@@ -32,7 +32,7 @@ class defeat_game():
         height = 400
         for phrase in INSTRUCTIONS_END_5:
             HISTORY = self.FONT_HISTORY.render(INSTRUCTIONS_END_5[INSTRUCTIONS_END_5.index(phrase)], 1, (0, 0, 0))
-            i = i + 40
+            i += 40
             self.WINDOW.blit(HISTORY, (10, height + i))
             pygame.display.flip()
 

@@ -55,7 +55,7 @@ class Character:
                 self.position_x = self.case_x * TILESIZE
 
 
-    def end_game(self, win, WINDOW, main):
+    def end_game(self, main):
         """Method to end the game."""
         #VICTORY
         if self.maze.structure[self.case_y][self.case_x] == '◘' and self.bag == 3:

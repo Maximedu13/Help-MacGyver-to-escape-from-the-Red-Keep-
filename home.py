@@ -53,5 +53,5 @@ class Menu():
 
 if __name__ == "__main__":
     #EXECUTE ONLY IF RUN AS A SCRIPT
-    menu = Menu()
-    menu.render()
+    MENU = Menu()
+    MENU.render()

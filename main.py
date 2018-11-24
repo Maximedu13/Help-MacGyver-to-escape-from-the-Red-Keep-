@@ -23,12 +23,12 @@ class loadGame():
         #MACGYVER LOADING
         self.MACGYVER = pygame.image.load(MACGYVER_IMG).convert_alpha()
         self.MACGYVER = pygame.transform.scale(self.MACGYVER, (TILESIZE, TILESIZE))
-        self.macgyver = Character("MacGyver",0 ,0 ,self.MACGYVER , self.maze)
+        self.macgyver = Character("MacGyver", 0, 0, self.MACGYVER, self.maze)
 
         #GARDIAN LOADING
         self.GARDIAN = pygame.image.load(GARDIAN_IMG).convert_alpha()
         self.GARDIAN = pygame.transform.scale(self.GARDIAN, (TILESIZE, TILESIZE))
-        self.gardian = Character("Gardienne", NBCASES*TILESIZE - TILESIZE , NBCASES*TILESIZE - TILESIZE, self.GARDIAN, self.maze)
+        self.gardian = Character("Gardienne", NBCASES*TILESIZE - TILESIZE, NBCASES*TILESIZE - TILESIZE, self.GARDIAN, self.maze)
 
         #INTERFACE BAG
         self.BAG = pygame.image.load(BAG_ITEM).convert_alpha()
@@ -45,10 +45,32 @@ class loadGame():
         self.AIGUILLE = Items("Aiguille", self.AIGUILLE, self.maze)
         self.ETHER = pygame.image.load("ressource/ether.png").convert_alpha()
         self.ETHER = pygame.transform.scale(self.ETHER, (TILESIZE, TILESIZE))
-        self.ETHER = Items("Ether",self.ETHER, self.maze)
+        self.ETHER = Items("Ether", self.ETHER, self.maze)
         self.TUBE = pygame.image.load("ressource/tube.png").convert_alpha()
         self.TUBE = pygame.transform.scale(self.TUBE, (TILESIZE, TILESIZE))
         self.TUBE = Items("Tube en plastique", self.TUBE, self.maze)
+
+    def loadItems(self):
+        #LIST OF THE ITEMS TO COLLECT TO WIN
+        list_items = [self.AIGUILLE, self.ETHER, self.TUBE]
+        #LOOP FOR, FOREACH ITEM IN THE LIST, WE DRAW IT ON THE SCREEN
+        for item in list_items:
+            #CALLING OF THE METHOD define_position
+            item.define_position()
+            #CALLING OF THE METHOD display_items
+            item.display_items(self.WINDOW)
+            #IF MACGVER COLLECTS AN ITEM...
+            if (self.macgyver.position_x == list_items[list_items.index(item)].obj_sprite_x) and (self.macgyver.position_y == list_items[list_items.index(item)].obj_sprite_y):
+                #IT MAKES A SOUND
+                pygame.mixer.music.load(ITEM_SOUND)
+                pygame.mixer.music.play()
+                #IT INCREMENTS MACGYVER'S BAG
+                self.macgyver.bag += 1
+                #IT MOVES THE OBJECT TO THE BAG
+                list_items[list_items.index(item)].obj_sprite_x = TILESIZE*(5 + list_items.index(item))
+                list_items[list_items.index(item)].obj_sprite_y = NBCASES*TILESIZE
+                #IT HIDES THE QUESTION MARKS
+                self.NOITEM.fill(TRANSPARENT)
 
     def run(self):
         #LOOP WHILE
@@ -59,7 +81,7 @@ class loadGame():
                 if event.type == pygame.QUIT:
                     pygame.quit()
                     sys.exit()
-                elif event.type == pygame.locals.KEYDOWN:
+                elif event.type == pygame.KEYDOWN:
                     #IF YOU PRESS ESC, YOU QUIT THE GAME
                     if event.key == K_ESCAPE:
                         pygame.quit()
@@ -88,34 +110,11 @@ class loadGame():
                 self.WINDOW.blit(self.NOITEM_3, (TILESIZE*7, NBCASES*TILESIZE))
                 self.WINDOW.blit(self.BAG_TEXT, (TILESIZE * 2.5, NBCASES*TILESIZE + TILESIZE/4))
 
-                #LIST OF THE ITEMS TO COLLECT TO WIN
-                list_items = [self.AIGUILLE, self.ETHER, self.TUBE]
-                #LOOP FOR, FOREACH ITEM IN THE LIST, WE DRAW IT ON THE SCREEN
-                for item in list_items:
-                    #CALLING OF THE METHOD define_position
-                    item.define_position()
-                    #CALLING OF THE METHOD display_items
-                    item.display_items(self.WINDOW)
-                    #IF MACGVER COLLECTS AN ITEM...
-                    if (self.macgyver.position_x == list_items[list_items.index(item)].obj_sprite_x) and (self.macgyver.position_y == list_items[list_items.index(item)].obj_sprite_y):
-                        #IT MAKES A SOUND
-                        pygame.mixer.music.load(ITEM_SOUND)
-                        pygame.mixer.music.play()
-                        #IT INCREMENTS MACGYVER'S BAG
-                        self.macgyver.bag += 1
-                        #IT MOVES THE OBJECT TO THE BAG
-                        list_items[list_items.index(item)].obj_sprite_x = TILESIZE*(5 + list_items.index(item))
-                        list_items[list_items.index(item)].obj_sprite_y = NBCASES*TILESIZE
-                        self.WINDOW.blit(self.NOITEM_2, (TILESIZE*6, NBCASES*TILESIZE))
-                        self.WINDOW.blit(self.NOITEM_3, (TILESIZE*7, NBCASES*TILESIZE))
+                #CALLING THE METHOD TO LOAD AND STICK THE ITEMS TO COLLECT
+                self.loadItems()
 
                 #REFRESH
                 pygame.display.flip()
 
-                #IF YOU WIN
-                if self.macgyver.win == True:
-                    self.macgyver.end_game(True, self.WINDOW, self)
-
-                #IF YOU LOOSE
-                elif self.macgyver.win == False:
-                    self.macgyver.end_game(False, self.WINDOW, self)
+                #END THE GAME
+                self.macgyver.end_game(self)

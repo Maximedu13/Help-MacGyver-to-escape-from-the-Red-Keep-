@@ -79,17 +79,16 @@ class Items:
         """Method to get a randomly position for the items."""
         list_random = []
         while self.maze.structure[self.position_y][self.position_x] != '–':
-            for i in range(3):
-                self.position_x = random.randint(0, NBCASES - 1)
-                self.position_y = random.randint(0, NBCASES - 1)
-                self.obj_sprite_x = self.position_x * TILESIZE
-                self.obj_sprite_y = self.position_y * TILESIZE
-                a = (self.position_x, self.position_y)
-                list_random.append(a)
-            if list_random[0] == list_random[1] or list_random[1] == list_random[2] or list_random[0] == list_random[2]:
+            self.position_x = random.randint(0, NBCASES - 1)
+            self.position_y = random.randint(0, NBCASES - 1)
+            self.obj_sprite_x = self.position_x * TILESIZE
+            self.obj_sprite_y = self.position_y * TILESIZE
+            a = (self.position_x, self.position_y)
+            list_random.append(a)
+            print(a)
+            if a[0] == a[1]:#or a[1] == a[2] or a[0] == a[2]:
                 print('collision')
                 return self.define_position()
-            print(list_random)
 
     def display_items(self, WINDOW):
         """Method to display the items on the maze."""
