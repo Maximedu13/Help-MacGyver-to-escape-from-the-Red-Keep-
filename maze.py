@@ -86,8 +86,7 @@ class Items:
             a = (self.position_x, self.position_y)
             list_random.append(a)
             print(a)
-            if a[0] == a[1]:#or a[1] == a[2] or a[0] == a[2]:
-                print('collision')
+            if a[0] == a[1]:
                 return self.define_position()
 
     def display_items(self, WINDOW):

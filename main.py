@@ -1,7 +1,7 @@
 # -*- coding: Utf-8 -*
 """It's the main page of the game."""
-import pygame
 import sys
+import pygame
 from pygame.locals import *
 from constants import *
 from character import *
@@ -83,7 +83,7 @@ class loadGame():
                     sys.exit()
                 elif event.type == pygame.KEYDOWN:
                     #IF YOU PRESS ESC, YOU QUIT THE GAME
-                    if event.key == K_ESCAPE:
+                    if event.key == pygame.K_ESCAPE:
                         pygame.quit()
                         sys.exit()
                     #IF YOU PRESS TOP ARROW, MACGYVER GOES ON THE TOP OF THE SCREEN
@@ -102,7 +102,8 @@ class loadGame():
                 #LOADING AND STICKING OF THE BACKGROUND
                 self.WINDOW.fill(WHITECOLOR)
                 self.maze.display(self.WINDOW)
-                self.WINDOW.blit(self.MACGYVER, (self.macgyver.position_x, self.macgyver.position_y))
+                self.WINDOW.blit(self.MACGYVER, (self.macgyver.position_x, \
+                self.macgyver.position_y))
                 self.WINDOW.blit(self.GARDIAN, (self.gardian.position_x, self.gardian.position_y))
                 self.WINDOW.blit(self.BAG, (TILESIZE, NBCASES*TILESIZE))
                 self.WINDOW.blit(self.NOITEM_1, (TILESIZE*5, NBCASES*TILESIZE))

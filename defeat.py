@@ -1,39 +1,42 @@
 # -*- coding: Utf-8 -*
 """It is the defeat game page."""
-import pygame
 import sys
-from constants import *
-from pygame.locals import *
+import pygame
+from pygame.locals import RESIZABLE
+from constants import DEFEAT_IMG, FONT_END, INSTRUCTIONS_END_2, \
+INSTRUCTIONS_END_3, INSTRUCTIONS_END_4, INSTRUCTIONS_END_5, GAME_TITLE, \
+SCREENSIZE_MENU, FONT_BG, FONT_STORY, WHITECOLOR
 
 class defeat_game():
     """Class which defines the defeat."""
     #CONSTRUCTOR
     def __init__(self):
         #GAME FIXES
-        self.WINDOW = pygame.display.set_mode((SCREENSIZE_MENU), RESIZABLE)
+        self.window = pygame.display.set_mode((SCREENSIZE_MENU), RESIZABLE)
         pygame.display.set_caption(GAME_TITLE)
         #DEFEAT IMAGE AND TEXT INSTRUCTIONS
-        self.DEFEAT = pygame.image.load(DEFEAT_IMG).convert()
-        self.DEFEAT = pygame.transform.scale(self.DEFEAT, (500, 330))
-        self.FONT = pygame.font.Font(FONT_END, 50)
-        self.TEXT_1 = self.FONT.render(INSTRUCTIONS_END_2, 1, (0, 0, 0))
-        self.FONT_2 = pygame.font.Font(FONT_BG, 25)
-        self.FONT_HISTORY = pygame.font.Font(FONT_STORY, 23)
-        self.TEXT_2 = self.FONT_2.render(INSTRUCTIONS_END_3, 1, (0, 0, 0))
-        self.TEXT_3 = self.FONT_2.render(INSTRUCTIONS_END_4, 1, (0, 0, 0))
-        self.WINDOW.fill(WHITECOLOR)
-        self.WINDOW.blit(self.DEFEAT, (100, 25))
-        self.WINDOW.blit(self.TEXT_1, (250, 360))
-        self.WINDOW.blit(self.TEXT_2, (10, 620))
-        self.WINDOW.blit(self.TEXT_3, (460, 650))
+        self.defeat = pygame.image.load(DEFEAT_IMG).convert()
+        self.defeat = pygame.transform.scale(self.defeat, (500, 330))
+        self.font = pygame.font.Font(FONT_END, 50)
+        self.text_1 = self.font.render(INSTRUCTIONS_END_2, 1, (0, 0, 0))
+        self.font_2 = pygame.font.Font(FONT_BG, 25)
+        self.font_history = pygame.font.Font(FONT_STORY, 23)
+        self.text_2 = self.font_2.render(INSTRUCTIONS_END_3, 1, (0, 0, 0))
+        self.text_3 = self.font_2.render(INSTRUCTIONS_END_4, 1, (0, 0, 0))
+        self.window.fill(WHITECOLOR)
+        self.window.blit(self.defeat, (100, 25))
+        self.window.blit(self.text_1, (250, 360))
+        self.window.blit(self.text_2, (10, 620))
+        self.window.blit(self.text_3, (460, 650))
 
         #LOOP TO DISPLAY THE INSTRUCTIONS STORY
         i = 0
         height = 400
         for phrase in INSTRUCTIONS_END_5:
-            HISTORY = self.FONT_HISTORY.render(INSTRUCTIONS_END_5[INSTRUCTIONS_END_5.index(phrase)], 1, (0, 0, 0))
+            history = self.font_history.render \
+            (INSTRUCTIONS_END_5[INSTRUCTIONS_END_5.index(phrase)], 1, (0, 0, 0))
             i += 40
-            self.WINDOW.blit(HISTORY, (10, height + i))
+            self.window.blit(history, (10, height + i))
             pygame.display.flip()
 
     def run(self):
