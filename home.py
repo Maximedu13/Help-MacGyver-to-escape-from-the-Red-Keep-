@@ -2,20 +2,20 @@
 """It's the homepage and the game launch file."""
 import sys
 import pygame
-import pygame.locals as GAME_GLOBALS
-import pygame.event as GAME_EVENTS
+from pygame.locals import *
 from constants import SCREENSIZE_MENU, GAME_TITLE, GARDIAN_IMG, \
 INSTRUCTIONS_HOME_1, INSTRUCTIONS_HOME_2, INSTRUCTIONS_HOME_3, WHITECOLOR, \
 BG_IMAGE, FONT_BG, START_SOUND
-from main import loadGame
+from main import LoadGame
+
+#INITIALISATION
+pygame.init()
 
 class Menu():
     """Class which defines the menu game."""
     #CONSTRUCTOR
     def __init__(self):
-        #INITIALISATION
-        pygame.init()
-        self.window = pygame.display.set_mode((SCREENSIZE_MENU), GAME_GLOBALS.RESIZABLE)
+        self.window = pygame.display.set_mode((SCREENSIZE_MENU), RESIZABLE)
         pygame.display.set_caption(GAME_TITLE)
         #BACKGROUNDS LOADING AND STICKING
         self.home = pygame.image.load(BG_IMAGE).convert()
@@ -37,20 +37,19 @@ class Menu():
     def render(self):
         """Method for the render."""
         while True:
-            #INITIALISATION
-            pygame.init()
-            for event in GAME_EVENTS.get():
-                if event.type == GAME_GLOBALS.QUIT:
+            #EVENMENTS
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
                     pygame.quit()
                     sys.exit()
-                if event.type == GAME_GLOBALS.KEYDOWN:
+                if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_ESCAPE or event.key == pygame.K_F2:
                         pygame.quit()
                         sys.exit()
-                    if event.key == GAME_GLOBALS.K_F1:
-                        main = loadGame()
+                    if event.key == pygame.K_F1:
+                        main = LoadGame()
                         main.run()
-                    if event.key == GAME_GLOBALS.K_F3:
+                    if event.key == pygame.K_F3:
                         pygame.mixer.music.stop()
         pygame.quit()
 
