@@ -83,9 +83,10 @@ class Items:
             self.obj_sprite_y = self.position_y * TILESIZE
             a = (self.position_x, self.position_y)
             list_random.append(a)
-            print(a)
-            if a[0] == a[1]:
-                return self.define_position()
+            print(list_random)
+            for i in range(3):
+                if list_random[0] == list_random[i]:
+                    return self.define_position()
 
     def display_items(self, window):
         """Method to display the items on the maze."""
