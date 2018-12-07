@@ -2,22 +2,23 @@
 """It's the homepage and the game launch file."""
 import sys
 import pygame
-from pygame.locals import *
-from constants import SCREENSIZE_MENU, GAME_TITLE, GARDIAN_IMG, \
-INSTRUCTIONS_HOME_1, INSTRUCTIONS_HOME_2, INSTRUCTIONS_HOME_3, WHITECOLOR, \
-BG_IMAGE, FONT_BG, START_SOUND
+from constants import (SCREENSIZE_MENU, GAME_TITLE, GARDIAN_IMG,
+                       INSTRUCTIONS_HOME_1, INSTRUCTIONS_HOME_2,
+                       INSTRUCTIONS_HOME_3, WHITECOLOR,
+                       BG_IMAGE, FONT_BG, START_SOUND)
 from main import LoadGame
 
-#INITIALISATION
+# INITIALISATION
 pygame.init()
+
 
 class Menu():
     """Class which defines the menu game."""
-    #CONSTRUCTOR
+    # CONSTRUCTOR
     def __init__(self):
-        self.window = pygame.display.set_mode((SCREENSIZE_MENU), RESIZABLE)
+        self.window = pygame.display.set_mode((SCREENSIZE_MENU))
         pygame.display.set_caption(GAME_TITLE)
-        #BACKGROUNDS LOADING AND STICKING
+        # BACKGROUNDS LOADING AND STICKING
         self.home = pygame.image.load(BG_IMAGE).convert()
         pygame.mixer.music.load(START_SOUND)
         pygame.mixer.music.play()
@@ -37,13 +38,14 @@ class Menu():
     def render(self):
         """Method for the render."""
         while True:
-            #EVENMENTS
+            # EVENMENTS
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     pygame.quit()
                     sys.exit()
                 if event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_ESCAPE or event.key == pygame.K_F2:
+                    if event.key == pygame.K_ESCAPE or \
+                                    event.key == pygame.K_F2:
                         pygame.quit()
                         sys.exit()
                     if event.key == pygame.K_F1:
@@ -53,7 +55,8 @@ class Menu():
                         pygame.mixer.music.stop()
         pygame.quit()
 
+
 if __name__ == "__main__":
-    #EXECUTE ONLY IF RUN AS A SCRIPT
+    # EXECUTE ONLY IF RUN AS A SCRIPT
     MENU = Menu()
     MENU.render()
