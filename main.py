@@ -11,7 +11,6 @@ from maze import Maze, Items
 from character import Character
 
 # INITIALISATION
-# pylint: disable=E1101
 pygame.init()
 
 
@@ -69,6 +68,7 @@ class LoadGame():
         # LIST OF THE ITEMS TO COLLECT TO WIN
         list_items = [self.aiguille, self.ether, self.tube]
         # CALLING OF THE METHODS define_position
+
         list_items[0].define_position_item_1()
         list_items[1].define_position_item_2()
         list_items[2].define_position_item_3()
@@ -81,7 +81,8 @@ class LoadGame():
             if (self.macgyver.position_x == list_items
                     [list_items.index(item)].obj_sprite_x) \
                     and (self.macgyver.position_y == list_items
-                         [list_items.index(item)].obj_sprite_y):
+                         [list_items.
+                          index(item)].obj_sprite_y):
                 # IT MAKES A SOUND
                 pygame.mixer.music.load(ITEM_SOUND)
                 pygame.mixer.music.play()

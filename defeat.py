@@ -11,7 +11,6 @@ from constants import (DEFEAT_IMG, FONT_END, INSTRUCTIONS_END_2,
 
 class DefeatGame():
     """Class which defines the defeat."""
-    # pylint: disable=E1101,R0902,R0903,R0201
     # CONSTRUCTOR
     def __init__(self):
         # GAME FIXES

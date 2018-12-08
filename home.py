@@ -10,9 +10,7 @@ from constants import (SCREENSIZE_MENU, GAME_TITLE, GARDIAN_IMG,
 from main import LoadGame
 
 # INITIALISATION
-# pylint: disable=E1101,R0201,R0903
 pygame.init()
-
 
 class Menu():
     """Class which defines the menu game."""

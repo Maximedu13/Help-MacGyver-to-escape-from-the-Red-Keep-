@@ -9,7 +9,6 @@ from defeat import DefeatGame
 
 class Character:
     """Class which defines a character."""
-    # pylint: disable=R0902,R0913
     # CONSTRUCTOR
     def __init__(self, name, position_x, position_y, image, maze):
         self.name = name
