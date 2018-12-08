@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#! /usr/bin/env python3
 # -*- coding: Utf-8 -*
 """It's the main page of the game."""
 import sys
@@ -11,6 +11,7 @@ from maze import Maze, Items
 from character import Character
 
 # INITIALISATION
+# pylint: disable=E1101
 pygame.init()
 
 

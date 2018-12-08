@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 # -*- coding: Utf-8 -*
 """It is the victory game page."""
 import sys
@@ -10,6 +11,7 @@ from constants import (VICTORY_IMG, FONT_END, INSTRUCTIONS_END_1,
 
 class VictoryGame():
     """Class which defines the victory."""
+    # pylint: disable=E1101,R0902,R0903,R0201
     # CONSTRUCTOR
     def __init__(self):
         # GAME FIXES

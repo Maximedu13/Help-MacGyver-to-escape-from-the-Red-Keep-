@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#! /usr/bin/env python3
 # -*- coding: Utf-8 -*
 """It is the maze and items (design) game page."""
 import random

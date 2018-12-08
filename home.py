@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#! /usr/bin/env python3
 # -*- coding: Utf-8 -*
 """It's the homepage and the game launch file."""
 import sys
@@ -10,6 +10,7 @@ from constants import (SCREENSIZE_MENU, GAME_TITLE, GARDIAN_IMG,
 from main import LoadGame
 
 # INITIALISATION
+# pylint: disable=E1101,R0201,R0903
 pygame.init()
 
 
