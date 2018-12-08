@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 # -*- coding: Utf-8 -*
 """It's the homepage and the game launch file."""
 import sys

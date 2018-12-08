@@ -3,7 +3,6 @@
 """It's the main page of the game."""
 import sys
 import pygame
-import random
 from constants import (SCREENSIZE_GAME, TILESIZE, MACGYVER_IMG,
                        GARDIAN_IMG, BAG_ITEM,
                        NBCASES, NO_ITEM, BAG_TXT, WHITECOLOR,
@@ -17,6 +16,7 @@ pygame.init()
 
 class LoadGame():
     """Class which defines the game."""
+    # pylint: disable=too-many-instance-attributes
     # CONSTRUCTOR
     def __init__(self):
         self.window = pygame.display.set_mode((SCREENSIZE_GAME))

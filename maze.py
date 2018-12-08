@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 # -*- coding: Utf-8 -*
 """It is the maze and items (design) game page."""
 import random
@@ -10,20 +11,27 @@ class Maze:
     """Class to create the maze"""
     # CONSTRUCTOR
     def __init__(self, file):
-        self.fichier = file
+        self.file = file
         self.structure = 0
 
     def generate(self):
         """Method to read the map file and create it"""
-        with open(self.fichier, "r") as fichier:
-            structure_maze = []
-            for ligne in fichier:
-                ligne_maze = []
-                for sprite in ligne:
+        # OPEN THE FILE
+        with open(self.file, "r") as file:
+            # CREATE EMPTY LIST
+            maze_structure = []
+            # SCAN FILE LINES
+            for line in file:
+                line_maze = []
+                # SCAN FILE LETTERS/SPRITES
+                for sprite in line:
+                    # IGNORE THE ENDS LINES
                     if sprite != '\n':
-                        ligne_maze.append(sprite)
-                structure_maze.append(ligne_maze)
-            self.structure = structure_maze
+                        # ADD THE SPRITE TO THE LIST OF THE LINE
+                        line_maze.append(sprite)
+                # ADD THE LINE TO THE LEVEL LIST
+                maze_structure.append(line_maze)
+            self.structure = maze_structure
 
     def display(self, window):
         """Method to draw the maze"""
@@ -40,13 +48,15 @@ class Maze:
         startline = pygame.image.load(START_LINE_IMG).convert_alpha()
         startline = pygame.transform.scale(startline, (TILESIZE, TILESIZE))
 
-        # PROCESS READING AND DRAWING FILE MAP
-        num_ligne = 0
-        for ligne in self.structure:
+        # PROCESS READING LEVEL FILE
+        num_line = 0
+        for line in self.structure:
+            # PROCESS READING LINES LISTS
             num_case = 0
-            for sprite in ligne:
+            for sprite in line:
+                # REAL POSITIONS IN PIXELS
                 x_x = num_case * TILESIZE
-                y_y = num_ligne * TILESIZE
+                y_y = num_line * TILESIZE
                 # IF THE SPRITE IS A ■, A WALL SPRITE WILL BE CREATED
                 if sprite == '■':
                     window.blit(wall, (x_x, y_y))
@@ -60,7 +70,7 @@ class Maze:
                 elif sprite == '◘':
                     window.blit(finishline, (x_x, y_y))
                 num_case += 1
-            num_ligne += 1
+            num_line += 1
 
 
 class Items:
@@ -76,7 +86,7 @@ class Items:
         self.maze = maze
 
     def define_position_item_1(self):
-        """Method to get a randomly position for the items."""
+        """Method to get a randomly position for the item number one."""
         while self.maze.structure[self.position_y][self.position_x] != '–':
             self.position_x = random.randint(0, 4)
             self.position_y = random.randint(0, NBCASES - 1)
@@ -84,7 +94,7 @@ class Items:
             self.obj_sprite_y = self.position_y * TILESIZE
 
     def define_position_item_2(self):
-        """Method to get a randomly position for the items."""
+        """Method to get a randomly position for the item number two."""
         while self.maze.structure[self.position_y][self.position_x] != '–':
             self.position_x = random.randint(5, 9)
             self.position_y = random.randint(0, NBCASES - 1)
@@ -92,7 +102,7 @@ class Items:
             self.obj_sprite_y = self.position_y * TILESIZE
 
     def define_position_item_3(self):
-        """Method to get a randomly position for the items."""
+        """Method to get a randomly position for the item number three."""
         while self.maze.structure[self.position_y][self.position_x] != '–':
             self.position_x = random.randint(9, NBCASES - 1)
             self.position_y = random.randint(0, NBCASES - 1)
