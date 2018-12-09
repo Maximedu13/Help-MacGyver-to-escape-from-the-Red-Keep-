@@ -68,11 +68,9 @@ class LoadGame():
         # LIST OF THE ITEMS TO COLLECT TO WIN
         list_items = [self.aiguille, self.ether, self.tube]
         # CALLING OF THE METHODS define_position
-
         list_items[0].define_position_item_1()
         list_items[1].define_position_item_2()
         list_items[2].define_position_item_3()
-
         # LOOP FOR, FOREACH ITEM IN THE LIST, WE DRAW IT ON THE SCREEN
         for item in list_items:
             # CALLING OF THE METHOD display_items

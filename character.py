@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#! /usr/bin/env python3
 # -*- coding: Utf-8 -*
 """It's the page for the actions of the character."""
 import pygame
