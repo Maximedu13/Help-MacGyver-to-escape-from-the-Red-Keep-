@@ -22,7 +22,6 @@ class Character:
 
     def move_to_the_top(self):
         """Method for the movement to the top."""
-        # We verifiy if the destination point is not a wall
         if self.case_y > 0:
             # We verifiy if the destination point is not a wall
             if self.maze.structure[self.case_y - 1][self.case_x] != '■':
