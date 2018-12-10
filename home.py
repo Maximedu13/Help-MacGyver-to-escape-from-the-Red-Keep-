@@ -12,6 +12,7 @@ from main import LoadGame
 # INITIALISATION
 pygame.init()
 
+
 class Menu():
     """Class which defines the menu game."""
     # CONSTRUCTOR

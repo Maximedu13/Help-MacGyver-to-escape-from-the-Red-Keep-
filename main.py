@@ -16,7 +16,6 @@ pygame.init()
 
 class LoadGame():
     """Class which defines the game."""
-    # pylint: disable=too-many-instance-attributes
     # CONSTRUCTOR
     def __init__(self):
         self.window = pygame.display.set_mode((SCREENSIZE_GAME))
